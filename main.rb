@@ -6,7 +6,7 @@ require 'find'
 
 files = []
 Find.find('./scripts') do |path|
-  p path
+  # p path
   files.push(path.delete_prefix('./scripts/')) if path =~ /.*\.txt$/
 end
 
@@ -16,7 +16,7 @@ users_response = gets.chomp
 if users_response == 'yes'
   the_user_wants_to_quit = false
   until the_user_wants_to_quit
-    scripts.each do |script|
+    files.each do |script|
       puts script
     end
     users_file = gets.chomp
@@ -30,7 +30,7 @@ if users_response == 'yes'
 
       # Character selection
       puts 'Which character would you like to play?'
-      character = gets.chomp
+      character = gets.chomp.downcase
       puts "Your character is #{character}"
       # iterate over script
       character_is_not_in_script = true
@@ -41,7 +41,7 @@ if users_response == 'yes'
             character_is_not_in_script = false
             break
           end
-        rescue StandardError
+        rescue
           next
         end
       end
@@ -49,9 +49,29 @@ if users_response == 'yes'
       if character_is_not_in_script
         puts "That character isn't in the script"
       else
-        puts 'script code goes here'
-				
+        # puts 'script code goes here'
+        script.each do |line|
+          # iterate over every line and if the character name appears, output the preceeding lines
+          if line[0] != character.upcase
+            puts line
+          else
+            user_is_correct = false
+            until user_is_correct
+              users_line = gets.chomp
+              # check if the users_line matches the current
+              if users_line == line[1]
+                user_is_correct = true
+              else
+                puts 'Not quite. Try again!' 
+              end
+            end
+          end
+        end
       end
+
+
+
+      
 
       puts 'Again as [same], [new] or [exit]?'
       input = gets.chomp
