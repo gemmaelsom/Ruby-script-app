@@ -8,3 +8,4 @@ class ScriptImport
         return File.read(@path_name)
     end
 end
+

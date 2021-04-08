@@ -1,4 +1,3 @@
-# Read script
 class ScriptReader
     def initialize(path_name)
         @path_name = path_name
