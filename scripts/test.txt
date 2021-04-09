@@ -4,6 +4,6 @@ THREEPIO There'll be no escape for the Princess this time.
 REBEL-OFFICER We intercepted no transmissions. Aaah...  This is a consular ship. Were on a diplomatic mission.
 
 THREEPIO What's that?
-LUKE Echo Three to Echo Seven. Han, old buddy, do you read me?
+LUKE Echo Three to 
 
 THREEPIO I should have known better than to trust the logic of a half-sized thermocapsulary dehousing assister...

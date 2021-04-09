@@ -15,6 +15,7 @@ puts "Welcome to the Interactive Script Reader - Every Actors New Best Friend. I
 users_response = gets.chomp
 if users_response == 'yes'
   the_user_wants_to_quit = false
+  puts 'Great. Here is a list of the scripts you can learn with me. Let me know which one you would like to work on today.'
   until the_user_wants_to_quit
     files.each do |script|
       puts script
@@ -57,10 +58,15 @@ if users_response == 'yes'
           else
             user_is_correct = false
             until user_is_correct
-              users_line = gets.chomp.downcase
+              users_line = gets.chomp.downcase.split
+              # p users_line
+              # p line[1].split
+              gets
               # check if the users_line matches the current
-              if users_line == line[1]
+              if users_line == line[1].downcase.split
                 user_is_correct = true
+                puts 'correct'
+                # code is not recognising that the users input matches the next line
               else
                 puts 'Not quite. Try again!'
               end
@@ -83,11 +89,5 @@ if users_response == 'yes'
     end
   end
 else
-  puts 'bye!'
+  puts 'Bye!'
 end
-
-# if users_response != 'yes'
-#   puts "Did you mean to say 'Yes'?"
-# elsif users_response == 'yes'
-#   puts 'Awesome! Have you already imported your script to the app?'
-# end
