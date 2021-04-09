@@ -52,7 +52,7 @@ if users_response == 'yes'
         # puts 'script code goes here'
         script.each do |line|
           # iterate over every line and if the character name appears, output the preceeding lines
-          if line[0] != character.downcase
+          if line[0] != character.upcase
             puts line
           else
             user_is_correct = false
@@ -71,9 +71,7 @@ if users_response == 'yes'
 
 
 
-      
-
-      puts 'Try again? [same script], [new script], [exit]'
+      puts 'Try again? [same script], [new], [exit]'
       input = gets.chomp
 
       if input == 'exit'
