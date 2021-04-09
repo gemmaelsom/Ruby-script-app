@@ -31,7 +31,6 @@ if users_response == 'yes'
       # Character selection
       puts 'Which character would you like to play?'
       character = gets.chomp.downcase
-      puts "Your character is #{character}"
       # iterate over script
       character_is_not_in_script = true
 
@@ -46,23 +45,24 @@ if users_response == 'yes'
         end
       end
 
+      # puts "I'll just check if #{character} is in this script."
       if character_is_not_in_script
         puts "That character isn't in the script"
       else
         # puts 'script code goes here'
         script.each do |line|
           # iterate over every line and if the character name appears, output the preceeding lines
-          if line[0] != character.upcase
+          if line[0] != character.downcase
             puts line
           else
             user_is_correct = false
             until user_is_correct
-              users_line = gets.chomp
+              users_line = gets.chomp.downcase
               # check if the users_line matches the current
               if users_line == line[1]
                 user_is_correct = true
               else
-                puts 'Not quite. Try again!' 
+                puts 'Not quite. Try again!'
               end
             end
           end
@@ -73,7 +73,7 @@ if users_response == 'yes'
 
       
 
-      puts 'Again as [same], [new] or [exit]?'
+      puts 'Try again? [same script], [new script], [exit]'
       input = gets.chomp
 
       if input == 'exit'
