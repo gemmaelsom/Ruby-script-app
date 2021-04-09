@@ -26,10 +26,10 @@ puts "I'm Cheeky, and I'm going to help you memorise your lines faster than ever
 users_response = gets.chomp
 if users_response == 'yes'
   the_user_wants_to_quit = false
-  puts 'Great. Here is a list of the scripts you can learn with me. Let me know which one you would like to work on today.'.    colorize(:blue)
+  puts 'Great. Here is a list of the scripts you can learn with me. Let me know which one you would like to work on today.'.colorize(:blue)
   until the_user_wants_to_quit
     files.each do |script|
-      puts script.colorize(:blue)
+      puts script.colorize(:yellow)
     end
     users_file = gets.chomp
     file = File.read("./scripts/#{users_file}")
@@ -41,45 +41,48 @@ if users_response == 'yes'
       # Character selection
       puts 'Which character would you like to play?'.colorize(:blue)
       character = gets.chomp.downcase
-      character_is_not_in_script = true
-
+      character_is_not_in_script = false
       script.each do |line|
         begin
           if character.downcase == line[0].downcase
-            character_is_not_in_script = false
+            character_is_not_in_script = true
             break
           end
         rescue
           next
         end
       end
+      # p character_is_not_in_script
+      # p character
 
-      
-      if character_is_not_in_script
+      if character_is_not_in_script == false
         puts "That character isn't in the script".colorize(:blue)
       else
+        puts 'Okay. Make sure to enter your lines with the correct grammar and punctuation, and hit enter twice after typing your line. Hit enter to begin.'.colorize(:blue)
+        gets
         script.each do |line|
           # iterate over every line and if the character name appears, output the preceeding lines
-          if line[0] != character.upcase
-            puts line
-          else
-            user_is_correct = false
-            until user_is_correct
-              users_line = gets.chomp.downcase.split
-              gets
-              if users_line == line[1].downcase.split
-                user_is_correct = true
-                puts 'correct'.colorize(:blue)
-              else
-                puts 'Not quite. Try again!'.colorize(:blue)
+          begin
+            if line[0].upcase != character.upcase
+              puts "#{line[0]}: #{line[1]}"
+            else
+              user_is_correct = false
+              until user_is_correct
+                users_line = gets.chomp.downcase.split
+                gets
+                if users_line == line[1].downcase.split
+                  user_is_correct = true
+                  puts 'Correct. Well done.'.colorize(:blue)
+                else
+                  puts 'Not quite. Try again!'.colorize(:blue)
+                end
               end
             end
+          rescue
+            next
           end
         end
       end
-
-
-
       puts 'Try again? [same script], [new], [exit]'.colorize(:blue)
       input = gets.chomp
 
