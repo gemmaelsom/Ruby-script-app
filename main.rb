@@ -22,16 +22,21 @@ def handle_help
   exit
 end
 
+def load_scripts
+  files = []
+  Find.find('./scripts') do |path|
+    files.push(path.delete_prefix('./scripts/')) if path =~ /.*\.txt$/
+  end
+  files
+end
+
+
 if ARGV.include? '--help'
   handle_help
 end
 
 print_welcome_banner
-
-files = []
-Find.find('./scripts') do |path|
-  files.push(path.delete_prefix('./scripts/')) if path =~ /.*\.txt$/
-end
+files = load_scripts
 
 # Greet user
 puts "I'm Cheeky, and I'm going to help you memorise your lines faster than ever before. Are you ready?".colorize(:blue)
@@ -80,6 +85,7 @@ if users_response == 'yes'
             else
               user_is_correct = false
               until user_is_correct
+                print (character.upcase + ": ").colorize(:red)
                 users_line = gets.chomp.downcase.split
                 gets
                 if users_line == line[1].downcase.split
