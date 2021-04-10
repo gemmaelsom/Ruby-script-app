@@ -1,9 +1,0 @@
-THREEPIO Did you hear that?  They've shut down the main reactor.  We'll be destroyed for sure.  This is madness!
-THREEPIO We're doomed!
-THREEPIO There'll be no escape for the Princess this time.
-REBEL-OFFICER We intercepted no transmissions. Aaah...  This is a consular ship. Were on a diplomatic mission.
-
-THREEPIO What's that?
-LUKE Echo Three to 
-
-THREEPIO I should have known better than to trust the logic of a half-sized thermocapsulary dehousing assister...

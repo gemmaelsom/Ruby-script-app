@@ -1,24 +1,16 @@
 require_relative '../script_import'
 require_relative '../script_reader'
 require_relative '../script_search'
+require 'find'
+require 'tty-font'
+require 'pastel'
+require 'colorize'
 
-describe ScriptImport do
-  it 'should read users file' do
-    sut = ScriptImport.new('./spec/test.txt')
-    expect(sut.read_file).to eq('content')
-  end
+describe print_welcome do
+def print_welcome
+print_welcome = it 'should print welcome banner in color'
+font = TTY::Font.new(:doom)
+pastel = Pastel.new
+puts pastel.white(font.write('WELCOME!', letter_spacing: 2))
 end
-
-describe ScriptReader do
-  it 'should print all lines except for users character' do
-    sut = ScriptReader.new('./spec/test.txt')
-    expect(sut.print_file).to eq('content')
-  end
-end
-
-describe ScriptSearch do
-  it 'should fetch data from database' do
-      sut = ScriptSearch.new('./spec/test.txt')
-      expect(sut.search_for_file).to eq('content')
-    end
 end
