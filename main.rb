@@ -7,14 +7,27 @@ require 'tty-font'
 require 'pastel'
 require 'colorize'
 
-font = TTY::Font.new(:doom)
-pastel = Pastel.new
-puts pastel.white(font.write('Interactive Script Reader'))
-puts pastel.blue(font.write('Every Actors New Best Friend'))
+def printWelcomeBanner
+  font = TTY::Font.new(:doom)
+  pastel = Pastel.new
+  puts pastel.white(font.write('Interactive Script Reader'))
+  puts pastel.blue(font.write('Every Actors New Best Friend'))
+  
+  font = TTY::Font.new(:doom)
+  pastel = Pastel.new
+  puts pastel.white(font.write('WELCOME!', letter_spacing: 2))
+end
 
-font = TTY::Font.new(:doom)
-pastel = Pastel.new
-puts pastel.white(font.write('WELCOME!', letter_spacing: 2))
+def handleHelp
+  puts 'Here is how to use my app'
+  exit
+end
+
+if ARGV.include? '--help'
+  handleHelp
+end
+
+printWelcomeBanner
 
 files = []
 Find.find('./scripts') do |path|
