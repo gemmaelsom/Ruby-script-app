@@ -30,6 +30,17 @@ def load_scripts
   files
 end
 
+def is_script_available(select_file, files)
+  script_is_available = false
+  files.each do |script|
+    if script == select_file
+      script_is_available = true
+    end
+  end
+  script_is_available
+end
+
+
 def is_character_in_script(script, character)
   character_is_not_in_script = false
   script.each do |line|
@@ -62,8 +73,15 @@ if users_response == 'yes'
     files.each do |script|
       puts script.colorize(:yellow)
     end
-    users_file = gets.chomp
-    file = File.read("./scripts/#{users_file}")
+    selected_file = gets.chomp
+
+    is_script_available = is_script_available(selected_file, files)
+    if is_script_available == false
+      puts "Select one of the files"
+      next
+    end
+
+    file = File.read("./scripts/#{selected_file}")
     script = file.split("\n")
     script = script.map { |line| line.split(' ', 2) }
     the_user_wants_a_new_script = false
