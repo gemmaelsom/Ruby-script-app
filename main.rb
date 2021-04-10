@@ -18,7 +18,10 @@ def print_welcome_banner
 end
 
 def handle_help
-  puts 'Here is how to use my app'
+  puts 'Make sure you have imported your chosen script as a txt file to this document.'
+  puts 'Please ensure that your chosen script abides by the following format:'
+  puts 'CHARACTER NAME  line'
+  puts 'If this format is not followed, the program will not recognise the lines in your script.'
   exit
 end
 
@@ -77,7 +80,7 @@ if users_response == 'yes'
 
     is_script_available = is_script_available(selected_file, files)
     if is_script_available == false
-      puts "Select one of the files"
+      puts 'Please select one of the files below.'
       next
     end
 
