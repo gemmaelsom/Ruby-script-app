@@ -30,6 +30,20 @@ def load_scripts
   files
 end
 
+def is_character_in_script(script, character)
+  character_is_not_in_script = false
+  script.each do |line|
+    begin
+      if character.downcase == line[0].downcase
+        character_is_not_in_script = true
+        break
+      end
+    rescue
+      next
+    end
+  end
+  character_is_not_in_script
+end
 
 if ARGV.include? '--help'
   handle_help
@@ -58,19 +72,8 @@ if users_response == 'yes'
       # Character selection
       puts 'Which character would you like to play?'.colorize(:blue)
       character = gets.chomp.downcase
-      character_is_not_in_script = false
-      script.each do |line|
-        begin
-          if character.downcase == line[0].downcase
-            character_is_not_in_script = true
-            break
-          end
-        rescue
-          next
-        end
-      end
-      # p character_is_not_in_script
-      # p character
+
+      character_is_not_in_script = is_character_in_script(script, character)
 
       if character_is_not_in_script == false
         puts "That character isn't in the script".colorize(:blue)
@@ -79,6 +82,7 @@ if users_response == 'yes'
         gets
         script.each do |line|
           # iterate over every line and if the character name appears, output the preceeding lines
+
           begin
             if line[0].upcase != character.upcase
               puts "#{line[0]}: #{line[1]}"
@@ -103,6 +107,7 @@ if users_response == 'yes'
       end
       puts 'Try again? [same script], [new], [exit]'.colorize(:blue)
       input = gets.chomp
+
 
       if input == 'exit'
         the_user_wants_a_new_script = true
