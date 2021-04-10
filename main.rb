@@ -72,6 +72,7 @@ users_response = gets.chomp
 if users_response == 'yes'
   the_user_wants_to_quit = false
   puts 'Great. Here is a list of the scripts you can learn with me. Let me know which one you would like to work on today.'.colorize(:blue)
+  puts 'Please ensure to use correct casing for the file name.'.colorize(:blue)
   until the_user_wants_to_quit
     files.each do |script|
       puts script.colorize(:yellow)
@@ -81,6 +82,7 @@ if users_response == 'yes'
     is_script_available = is_script_available(selected_file, files)
     if is_script_available == false
       puts 'Please select one of the files below.'
+      puts 'Make sure you have used the correct casing for the file name.'
       next
     end
 
