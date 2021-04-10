@@ -7,21 +7,16 @@
 https://github.com/gemmaelsom/Ruby-script-app
 
 ## Software Development Plan
-### Purpose and Scope
 #### Describe at a high level what the application will do
-This application will work to assist actors with learning their lines and developing their memorisation skills. The user can import a script that they are currently learning, into the program. The program will ask the user which character they would like to play, and it will store this information. The program will then act as a "reader" so that the actor is able to run through their lines. The actor types their line and the program will output the next lines in the script. The user can also access a database of film scripts if they are not working on a particular project but instead would just like to practice their memorisation skills. 
+This application will work to assist actors with learning their lines and developing their memorisation skills. The user can import a script (as a txt file) that they are currently learning, into the program. The program will ask the user which character they would like to play, and it will remember this information. The program will then act as a "reader" so that the actor is able to run through their lines. The actor types their line and the program will output the next lines in the script. The user can also access a small database of film scripts if they are not working on a particular project but instead would just like to practice their memorisation skills. 
 
-The program will fetch data from a database of other scripts on a Kaggle site and index the scripts by name. The user can search for a particular script that they will want, or for a particular character they'd like to play and the program will fuzzy match their request. The program will implement "file.read.split" to import their own script into the program. It will ask the user which character they would like to play and store this information. The interactive script reader will count the words in the script that the user types (their characters lines) so that it knows to print the next line. The program will look for the next mention of the #{character name} and print up until that point. 
+The program loops through the data in the selected txt file looking for the users characters name. It will then print the proceeding lines from the script and then prompt the user to enter their line. The program will advise the user if they were correct, and if they were incorrect it will prompt them to try again. Once the script has been completed, the program will ask the user if they would like try again with the same script, try with a new script, or exit.
 
-#### Identify the problem it will solve and explain why you are developing it
-It's very difficult for actors to learn their lines when they are on their own and not with their scene partner. Some actors resort to writing out their lines over and over again until it sticks, and some will rehearse over the phone with their scene partner. It's quite difficult to learn lines correctly without a reader to read the other characters lines. When this happens, the actor is not learning their queues, or developing a thorough connection the back and forth interaction in the scene. This program offers an alternative, more time efficient opportunity to rehearse in the comfort of their own home and without the need to rely on other actors.
+It's very difficult for actors to learn their lines when they are on their own and not with their scene partner. Some actors resort to writing out their lines over and over again until it sticks, and some will rehearse over the phone with their scene partner. It's quite difficult to learn lines correctly without a reader to read the other characters lines as there is no prompt to remind them of their cue. When this happens, the actor is not learning their cues correctly, nor are they developing a thorough understanding of the back and forth interaction in the scene. This program offers an alternative, more time efficient opportunity to rehearse in the comfort of their own home and without the need to rely on other actors.
 
-#### Identify the target audience
-The target audience for this program are performers of any kind that need to develop strong word memorisation skills. Any form of public speaker, including politicians and toast masters, can use this app. 
+The target audience for Interactive Script Reader are performers of any kind that need to develop strong word memorisation skills. Any form of public speaker, including politicians and toast masters, can use this app. 
 
-#### Explain how a member of the target audience will use it
-
-A member of the target audience will need access to the program, and will need to understand how to access it via their terminal. 
+A member of the target audience will need access to the program, and will need to understand how to access it via their terminal. The user will need to have Ruby installed on their machine, and will then need to clone the Ruby-script-app repository on my GitHub. Once this has been cloned, the user needs to type the following into their terminal "git clone git@github.com:gemmaelsom/Ruby-script-app.git".
 
 ### List of features
 Note: Ensure that your features above allow you to demonstrate your understanding of the following language elements and concepts:
@@ -29,31 +24,33 @@ Note: Ensure that your features above allow you to demonstrate your understandin
 - loops and conditional control structures
 - error handling
 
-Feature: Interactive script reader
-Implementation: count the words in the script that the user types (their characters lines) so that the program knows to print the next line. It would know when to print the words until the #{character1} name appears next
+Feature: Welcome banner
+Implementation: I've used the gems tty-font, pastel, and colorize to make a pretty welcome banner. 
 
 Feature: Script search
-Implementation: Data will be fetched from a Kaggle site and indexed by the script name. It will fuzzy match.
+Implementation: I've written a function called is_script_available that searches for the users preferred script. A menu is printed that shows the scripts that have been imported into the file already. The user needs to input which one they would like to rehearse with. If the input does not match the txt files available, the user will be advised that the script is not available and will be prompted to try again. 
 
-Feature: Script import
-Implementation: Use file.read.split so that user can import the script they're learning into the program
+Feature: Character selection
+Implementation: The user is asked to input which character they'd like to play, and the users input is assigned to a variable named "character". If that character is available, the program will continue on with the next block of code. If the character is unavailable, the user will be notified and prompted to try again. I've done this by using a loop that searches the selected script to see if there is a match to the variable.
+
+Feature: Script reader
+Implementation: Once the user has begun the rehearsal, the program uses gets.chomp.downcase.split to check that the user said their line correctly. As I do not have control over the formatting of the scripts that are importing into the file, I had to use split in case there is any extra white space. I also added downcase as it's unlikely the user will type the line exactly as it's written in the script. I've used boolean values to determine whether the users input correctly matched their next line.
+
+Feature: Options to quit
+Implementation: In the beginning, the program asks if the user is ready to begin, if they type anything other than 'yes' the code will say goodbye to the user and exit the program. Later on, after the script has been rehearsed, the user is provided the options of trying again using the "same script", trying with a "new" script, or if they would like to "exit". If they select "exit", the program will exit. 
+
+Feature: Command Line Argument
+Implementation: If the user needs assistance using the program, they can execute "--help" and some helpful tips will be printed for them. For this I've used "ARGV".
+
 ### Outline of user interaction and experience
-Your outline must include:
-- how the user will find out how to interact with / use each feature
-- how the user will interact with / use each feature
-- how errors will be handled by the application and displayed to the user
+
+This program is very simple to run, mostly because the program clearly outlines the instructions to them consistently throughout the experience. The program has been written to take all potential errors into consideration to ensure that the user is not lost, or that no Traceback Error appears. 
 
 ### Control flow diagram
 ![Control flow diagram](/controlflowdiagram.jpg)
 ### Implementation plan
 Develop an implementation plan which:
-- outlines how each feature will be implemented and a checklist of tasks for each feature
-- prioritise the implementation of different features, or checklist items within a feature
-- provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
 
-Utilise a suitable project management platform to track this implementation plan
-
-> Your checklists for each feature should have at least 5 items.
 
 ### Help documentation
 Accurately describe how to use and install the application.

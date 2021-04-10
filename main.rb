@@ -99,7 +99,8 @@ if users_response == 'yes'
       if character_is_not_in_script == false
         puts "That character isn't in the script".colorize(:blue)
       else
-        puts 'Okay. Make sure to enter your lines with the correct grammar and punctuation, and hit enter twice after typing your line. Hit enter to begin.'.colorize(:blue)
+        puts 'Okay. Make sure to enter your lines with the correct grammar and punctuation.'
+        puts 'Hit enter twice after typing your line. Hit enter to begin.'.colorize(:blue)
         gets
         script.each do |line|
           # iterate over every line and if the character name appears, output the preceeding lines
