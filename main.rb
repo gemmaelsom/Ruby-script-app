@@ -43,7 +43,6 @@ def is_script_available(select_file, files)
   script_is_available
 end
 
-
 def is_character_in_script(script, character)
   character_is_not_in_script = false
   script.each do |line|
