@@ -47,7 +47,7 @@ Implementation: If the user needs assistance using the program, they can execute
 This program is very simple to run, mostly because the program clearly outlines the instructions to them consistently throughout the experience. The program has been written to take all potential errors into consideration to ensure that the user is not lost, or that no Traceback Error appears. 
 
 ### Control flow diagram
-![Control flow diagram](/controlflowdiagram.jpg)
+![Control flow diagram](/controlflow.png)
 ### Implementation plan
 Develop an implementation plan which:
 
