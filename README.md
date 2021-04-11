@@ -53,7 +53,7 @@ https://trello.com/b/QAUbhGs4/rubyscriptapp
 
 To install this application you will need to firstly ensure that Ruby is installed on your machine. To check if you already have Ruby installed, enter "Ruby -v" into your terminal. If Ruby is already installed, the Ruby version you have will be outputted. For details on how to install Ruby, please see https://github.com/rbenv/rbenv. 
 
-Once Ruby is installed, you will need to clone the Ruby-script-app repo from my GitHub. Copy "git clone ~insert link here~" into your terminal and then run "install_script.sh" and the program will begin. 
+Once Ruby is installed, you will need to clone the Ruby-script-app repo from my GitHub. Copy "git clone ~insert link here~" into your terminal. 'Cd' into Ruby-script-app and then run "./install_script.sh" and the program will begin. 
 
 If you would like to import your own script into the application, add your script to the "scripts" folder. Please note that for this to work, the script must be a .txt document. The document must be formatted as so - "CHARACTER NAME    character's line here". If there are any numbers or quotation marks before the characters name, the program will not be able to run. 
 
